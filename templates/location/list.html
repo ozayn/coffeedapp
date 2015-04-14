@@ -1,3 +1,19 @@
-{% for location in object_list %}
+<!--{% for location in object_list %}
     {{ location.title }}
-{% endfor %}
+{% endfor %}-->
+
+
+{% load staticfiles %}
+<link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+    {% for location in object_list %}
+        <div class='panel'>
+        <h3>{{ location.title }}</h3>
+        <p>{{ location.description }}</p>
+        </div>
+    {% endfor %}
+    </div>
+    <div class="col-md-2"></div>
+</div>
