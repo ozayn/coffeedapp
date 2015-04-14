@@ -1,3 +1,11 @@
 from django.db import models
 
 # Create your models here.
+
+class Location(models.Model):
+	title = models.CharField(max_length = 300) 
+	# a character field, maximum of 300 characters
+	description = models.TextField(null = True, blank = True) 
+	# this field is allowed to be left empty
+	created_at = models.DateTimeField(auto_now_add = True) 
+	# record the time when this location was created at / automatically add
