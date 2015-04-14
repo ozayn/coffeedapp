@@ -11,5 +11,5 @@ class Location(models.Model):
 	# record the time when this location was created at / automatically add
 
 	def __unicode__(self):  # give titles to locations
-         return self.title
+		return self.title
          # the instance of location is its own title
