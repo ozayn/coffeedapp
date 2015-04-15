@@ -12,6 +12,6 @@ class LocationListView(ListView):
 	template_name = 'location/list.html'
 
 
-class LocationListView(ListView):
-	model = coremodels.Location
-	template_name = 'base/theme.html'
+# class LocationListView(ListView):
+# 	model = coremodels.Location
+# 	template_name = 'base/theme.html'
