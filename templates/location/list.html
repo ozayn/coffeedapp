@@ -4,11 +4,13 @@
  	<div class="col-md-2"></div>
  		<div class="col-md-8">
  		{% for location in object_list %}
- 			<div class='panel'>
+ 			<!--<div class='panel'>-->
  				<!--<h3>{{ location.title }}</h3>-->
                 <h3><a href="{{ location.get_absolute_url }}">{{ location.title }}</a></h3>
+                 {% if location.address %}<p><b>Location: </b>{{ location.address }}</p>{% endif %}
+                 {% if location.hours %}<p>{{ location.hours }}</p>{% endif %}
  				<p>{{ location.description }}</p>
- 			</div>
+ 			<!--</div>-->
  		{% endfor %}
  		</div>
  	<div class="col-md-2"></div>

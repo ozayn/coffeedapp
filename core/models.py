@@ -10,6 +10,8 @@ class Location(models.Model):
 	# this field is allowed to be left empty
 	created_at = models.DateTimeField(auto_now_add = True) 
 	# record the time when this location was created at / automatically add
+	address = models.TextField(null = True, blank = True)
+	hours = models.TextField(null = True, blank = True)
 
 	def __unicode__(self):  # give titles to locations
 		return self.title
