@@ -22,3 +22,4 @@ class LocationDetailView(DetailView):
     model = coremodels.Location
     template_name = 'location/detail.html'
     context_object_name = 'location'
+    

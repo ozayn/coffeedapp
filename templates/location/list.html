@@ -5,7 +5,8 @@
  		<div class="col-md-8">
  		{% for location in object_list %}
  			<div class='panel'>
- 				<h3>{{ location.title }}</h3>
+ 				<!--<h3>{{ location.title }}</h3>-->
+                <h3><a href="{{ location.get_absolute_url }}">{{ location.title }}</a></h3>
  				<p>{{ location.description }}</p>
  			</div>
  		{% endfor %}
