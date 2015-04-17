@@ -1,41 +1,23 @@
 {% extends "base/theme.html" %}
 {% block main_content %}
 <div class="row main-content">
- 	<div class="col-md-2"></div>
- 		<div class="col-md-8">
- 		{% for location in object_list %}
- 			<!--<div class='panel'>-->
- 				<!--<h3>{{ location.title }}</h3>-->
-                <h3><a href="{{ location.get_absolute_url }}">{{ location.title }}</a></h3>
+    <div class="col-md-2"></div>
+        <div class="col-md-8">
+        {% for location in object_list %}
+                <div class='row'>
+                 <div class="col-md-8">
+                 <h3><a href="{{ location.get_absolute_url }}">{{ location.title }}</a></h3>
+                 </div>
+                 <div class="col-md-4 text-right">
+                 <h3>{% include 'base/rating.html' with rating=location.get_average_rating %}</h3>
+                </div>
                  {% if location.address %}<p><b>Location: </b>{{ location.address }}</p>{% endif %}
                  {% if location.hours %}<p>{{ location.hours }}</p>{% endif %}
                   {% if location.image_file %}<img class="img-responsive" src="{{ location.image_file.url }}"></img>
                     {% endif %}
- 				<p>{{ location.description }}</p>
- 			<!--</div>-->
- 		{% endfor %}
- 		</div>
- 	<div class="col-md-2"></div>
+                <p>{{ location.description }}</p>
+        {% endfor %}
+        </div>
+    <div class="col-md-2"></div>
 </div>
 {% endblock %}
-
-<!--{% for location in object_list %}
-    {{ location.title }}
-{% endfor %}-->
-
-
-<!--{% load staticfiles %}
-<link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
-<div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-    {% for location in object_list %}
-        <div class='panel'>
-        <h3>{{ location.title }}</h3>
-        <p>{{ location.description }}</p>
-        </div>
-    {% endfor %}
-    </div>
-    <div class="col-md-2"></div>
-</div>-->
-
