@@ -46,6 +46,7 @@ class Location(models.Model):
 	def __unicode__(self):  # give titles to locations
 		return self.title
          # the instance of location is its own title
+
  	def get_absolute_url(self):
  		return reverse(viewname="location_list", args=[self.id])
 
@@ -56,12 +57,17 @@ class Location(models.Model):
 		else:
 			return int(average)
 
+	def get_reviews(self): # returns a list of reviews
+		return self.review_set.all()
+
 class Review(models.Model):
 	location = models.ForeignKey(Location) # for just one location
 	user = models.ForeignKey(User) # associated with a particular user
 	description = models.TextField(null=True, blank=True) # user's explanation
 	rating = models.IntegerField(choices = RATING_CHOICES, null=True, blank=True)
 	created_at = models.DateTimeField(auto_now_add=True)
+	# def __unicode__(self):  
+	# 	return Location(models.Model).title
 
 
 
