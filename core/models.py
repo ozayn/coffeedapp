@@ -1,6 +1,18 @@
 from django.db import models
 from django.core.urlresolvers import reverse
 
+import os
+import uuid
+
+def upload_to_location(instance, filename):
+	# where to save the files
+	# what to name the files
+    blocks = filename.split('.')
+    ext = blocks[-1]
+    filename = "%s.%s" % (uuid.uuid4(), ext)
+    instance.title = blocks[0]
+    return os.path.join('uploads/', filename)
+
 # Create your models here.
 
 class Location(models.Model):
@@ -12,6 +24,10 @@ class Location(models.Model):
 	# record the time when this location was created at / automatically add
 	address = models.TextField(null = True, blank = True)
 	hours = models.TextField(null = True, blank = True)
+
+	image_file = models.ImageField(upload_to=upload_to_location, null=True, blank=True)
+	# allowed to be empty
+	# make a new migration
 
 	def __unicode__(self):  # give titles to locations
 		return self.title
