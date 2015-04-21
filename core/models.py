@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User 
 # User: a model that comes with django, creaded one automatically
 from django.db.models import Avg
+from geoposition.fields import GeopositionField
 
 import os
 import uuid
@@ -61,9 +62,9 @@ class Location(models.Model):
 	# a character field, maximum of 300 characters
 	description = models.TextField(null = True, blank = True) 
 	# this field is allowed to be left empty
-	created_at = models.DateTimeField(auto_now_add = True) 
 	# record the time when this location was created at / automatically add
 	address = models.TextField(null = True, blank = True)
+	position = GeopositionField(null=True, blank=True)
 	hours = models.TextField(null = True, blank = True)
 	wifi = models.IntegerField(choices=WIFI_CHOICES, null=True, blank=True)
 	seating = models.IntegerField(choices=PLURAL_CHOICES, null=True, blank=True)
@@ -73,6 +74,8 @@ class Location(models.Model):
 	alcohol = models.IntegerField(choices=YESNO_CHOICES, null=True, blank=True)
 	outdoor = models.IntegerField(choices=YESNO_CHOICES, null=True, blank=True)
 	food = models.IntegerField(choices=YESNO_CHOICES, null=True, blank=True)
+
+	created_at = models.DateTimeField(auto_now_add = True) 
 
 	image_file = models.ImageField(upload_to=upload_to_location, null=True, blank=True)
 	# allowed to be empty
