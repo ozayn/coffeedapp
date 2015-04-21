@@ -9,6 +9,10 @@ body {
     font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
+.wide-map { 
+    height:400px;
+}
+
 .text-muted {
     color: #777;
 }
