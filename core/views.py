@@ -3,7 +3,8 @@ from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 import core.models as coremodels
-from django.views.generic.edit import CreateView
+#from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView
 
 class LandingView(TemplateView):
     template_name = 'base/index.html'
@@ -30,11 +31,16 @@ class LocationCreateView(CreateView):
 	template_name = 'base/form.html'
 	fields = "__all__"
 
-
-
 class SearchListView(LocationListView):
 	def get_queryset(self):
 		incoming_query_string = self.request.GET.get('query', '')
 		return coremodels.Location.objects.filter(title__icontains=incoming_query_string)
+
+
+class LocationUpdateView(UpdateView):
+	model = coremodels.Location
+	template_name = 'base/form.html'
+	fields = "__all__"
+
 
 
