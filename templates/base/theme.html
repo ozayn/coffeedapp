@@ -1,16 +1,24 @@
 {% extends "base/index.html" %}
 
+
+
 {% block navigation %}
 
- <li>
- 	<a class="page-scroll" href="/location">Find a Coffee Shop</a>
- </li>
+{% block search %}
+	<form action="/search/" class="navbar-form navbar-right" method="get">
+		 <div class="form-group">
+		 	<input type="text" placeholder="Search" class="form-control" name="query"></input>
+		 </div>
+	</form>
+{% endblock %}
+
+ <li><a class="page-scroll" href="/location">Find a Coffee Shop</a></li>
  
- <li>
- 	<a class="page-scroll" href="/location/create/">Add a Location</a>
- </li>
+ <li><a class="page-scroll" href="/location/create/">Add a Location</a></li>
 
 {% endblock %}
+
+
 
 
 {% block main_content %}

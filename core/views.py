@@ -29,3 +29,12 @@ class LocationCreateView(CreateView):
 	model = coremodels.Location
 	template_name = 'base/form.html'
 	fields = "__all__"
+
+
+
+class SearchListView(LocationListView):
+	def get_queryset(self):
+		incoming_query_string = self.request.GET.get('query', '')
+		return coremodels.Location.objects.filter(title__icontains=incoming_query_string)
+
+
