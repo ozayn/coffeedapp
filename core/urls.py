@@ -8,6 +8,7 @@ urlpatterns = patterns('',
 	#url(r'location/(?P<pk>\d+)/detail/$', coreviews.LocationDetailView.as_view()),
 	url(r'location/create/$', coreviews.LocationCreateView.as_view()), 
 	url(r'search/$', coreviews.SearchListView.as_view()),
+	url(r'location/(?P<pk>\d+)/review/create/$', coreviews.ReviewCreateView.as_view(), name='review_create'),
 	url(r'location/(?P<pk>\d+)/update/$', coreviews.LocationUpdateView.as_view(), name='location_update'),
 	url(r'location/(?P<pk>\d+)/detail/$', coreviews.LocationDetailView.as_view(), name='location_list'),
 )

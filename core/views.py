@@ -42,5 +42,17 @@ class LocationUpdateView(UpdateView):
 	template_name = 'base/form.html'
 	fields = "__all__"
 
+class ReviewCreateView(CreateView):
+	model = coremodels.Review
+	template_name = 'base/form.html'
+	fields =['description', 'rating']
+
+	def form_valid(self, form): #rewrite
+		form.instance.user = self.request.user
+		form.instance.location = coremodels.Location.objects.get(id = self.kwargs['pk'])
+		return super(ReviewCreateView, self).form_valid(form)
+
+	def get_success_url(self): # takes self
+		return self.object.location.get_absolute_url()
 
 
