@@ -56,3 +56,14 @@ class ReviewCreateView(CreateView):
 		return self.object.location.get_absolute_url()
 
 
+class ReviewUpdateView(UpdateView):
+	model = coremodels.Review
+	template_name = 'base/form.html'
+	fields =['description', 'rating']
+
+	def get_object(self):
+		return coremodels.Review.objects.get(location__id=self.kwargs['pk'], user=self.request.user)
+
+	def get_success_url(self):
+		return self.object.location.get_absolute_url()
+
