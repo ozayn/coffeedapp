@@ -21,10 +21,22 @@ class LocationListView(ListView):
 
 
 class LocationDetailView(DetailView):
-    model = coremodels.Location
-    template_name = 'location/detail.html'
-    context_object_name = 'location'
-    
+	model = coremodels.Location
+	template_name = 'location/detail.html'
+	context_object_name = 'location'
+
+	def get_context_data(self, **kwargs):
+		context = super(LocationDetailView, self).get_context_data(**kwargs)
+		location = coremodels.Location.objects.get(id=self.kwargs['pk'])
+		if self.request.user.is_authenticated():
+			user_reviews = coremodels.Review.objects.filter(location=location, user=self.request.user)
+			if user_reviews.count() > 0: # if there are reviews for the user that has already logged in
+				context['user_review'] = user_reviews[0]
+			else:
+				context['user_review'] = None
+
+		return context
+		    
 
 class LocationCreateView(CreateView):
 	model = coremodels.Location

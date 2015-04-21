@@ -18,9 +18,14 @@
 	 		<img src="{{ location.image_file.url }}"></img>
 	 	{% endif %}
 	 </div>
-	 <div class="col-md-4">
- 		<a type="button" href="{% url 'location_update' pk=location.id %}" class="btn btn-default pull-right">Edit</a>
- 	</div>
+	<div class="col-md-12">
+		 <a type="button" href="{% url 'location_update' pk=location.id %}" class="btn btn-default pull-right">Edit</a>
+		 {% if user_review %}
+		 <a type="button" href="{% url 'review_update' pk=location.id %}" class="btn btn-default pull-right">Update Review</a>
+		 {% else %}
+		 <a type="button" href="{% url 'review_create' pk=location.id %}" class="btn btn-default pull-right">Create Review</a>
+		 {% endif %}
+	</div>
 
 	 <div class="col-md-12">
 		 {% for review in location.get_reviews %}
