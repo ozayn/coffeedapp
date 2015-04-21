@@ -18,6 +18,33 @@ RATING_CHOICES = (
 	(5, '*****'),
 	)
 
+
+YESNO_CHOICES = (
+	 (0, 'No'),
+	 (1, 'Yes')
+	 )
+
+PLURAL_CHOICES = (
+	 (0, 'None'),
+	 (1, 'Minimal'),
+	 (2, 'Some'),
+	 (3, 'Ample')
+	 )
+
+WIFI_CHOICES = (
+	 (0, 'None'),
+	 (1, 'Spotty'),
+	 (2, 'Strong')
+	 )
+
+COFFEE_CHOICES = (
+	 (0, 'None'),
+	 (1, 'Truck Stop'),
+	 (2, 'Good'),
+	 (3, 'Really Good'),
+	 (4, 'Great'),
+	 )
+
 def upload_to_location(instance, filename):
 	# where to save the files
 	# what to name the files
@@ -38,6 +65,14 @@ class Location(models.Model):
 	# record the time when this location was created at / automatically add
 	address = models.TextField(null = True, blank = True)
 	hours = models.TextField(null = True, blank = True)
+	wifi = models.IntegerField(choices=WIFI_CHOICES, null=True, blank=True)
+	seating = models.IntegerField(choices=PLURAL_CHOICES, null=True, blank=True)
+	outlets = models.IntegerField(choices=PLURAL_CHOICES, null=True, blank=True)
+	bathrooms = models.IntegerField(choices=YESNO_CHOICES, null=True, blank=True)
+	coffee = models.IntegerField(choices=COFFEE_CHOICES, null=True, blank=True)
+	alcohol = models.IntegerField(choices=YESNO_CHOICES, null=True, blank=True)
+	outdoor = models.IntegerField(choices=YESNO_CHOICES, null=True, blank=True)
+	food = models.IntegerField(choices=YESNO_CHOICES, null=True, blank=True)
 
 	image_file = models.ImageField(upload_to=upload_to_location, null=True, blank=True)
 	# allowed to be empty
