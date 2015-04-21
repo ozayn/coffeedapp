@@ -3,6 +3,20 @@
 
 
 {% block navigation %}
+<li>
+ 	<a class="page-scroll" href="/location">Find a Coffee Shop</a>
+</li>
+ {% if user.is_authenticated %}
+	 <li>
+	 	<a class="page-scroll" href="/location/create/">Add a Location</a>
+	 </li> 
+ {% else %}
+	 <li>
+	 	<a class="page-scroll" href="/entrance/">Log In</a>
+	 </li> 
+ {% endif %} 
+
+{% endblock %}
 
 {% block search %}
 	<form action="/search/" class="navbar-form navbar-right" method="get">
@@ -11,14 +25,6 @@
 		 </div>
 	</form>
 {% endblock %}
-
- <li><a class="page-scroll" href="/location">Find a Coffee Shop</a></li>
- 
- <li><a class="page-scroll" href="/location/create/">Add a Location</a></li>
-
-{% endblock %}
-
-
 
 
 {% block main_content %}
